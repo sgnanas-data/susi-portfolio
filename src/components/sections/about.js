@@ -18,6 +18,7 @@ const StyledAboutSection = styled.section`
     }
   }
 `;
+
 const StyledText = styled.div`
   ul.skills-list {
     display: grid;
@@ -25,7 +26,6 @@ const StyledText = styled.div`
     grid-gap: 0 10px;
     padding: 0;
     margin: 20px 0 0 0;
-    overflow: hidden;
     list-style: none;
 
     li {
@@ -46,6 +46,7 @@ const StyledText = styled.div`
     }
   }
 `;
+
 const StyledPic = styled.div`
   position: relative;
   max-width: 300px;
@@ -57,15 +58,12 @@ const StyledPic = styled.div`
 
   .wrapper {
     ${({ theme }) => theme.mixins.boxShadow};
-    display: block;
     position: relative;
-    width: 100%;
     border-radius: var(--border-radius);
     background-color: var(--green);
 
     &:hover,
     &:focus {
-      outline: 0;
       transform: translate(-4px, -4px);
 
       &:after {
@@ -79,7 +77,6 @@ const StyledPic = styled.div`
     }
 
     .img {
-      position: relative;
       border-radius: var(--border-radius);
       mix-blend-mode: multiply;
       filter: grayscale(100%) contrast(1);
@@ -89,7 +86,6 @@ const StyledPic = styled.div`
     &:before,
     &:after {
       content: '';
-      display: block;
       position: absolute;
       width: 100%;
       height: 100%;
@@ -118,14 +114,21 @@ const About = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
+    if (!prefersReducedMotion) {
+      sr.reveal(revealContainer.current, srConfig());
     }
+  }, [prefersReducedMotion]);
 
-    sr.reveal(revealContainer.current, srConfig());
-  }, []);
-
-  const skills = ['SEO', 'Content Marketing', 'Conversion Rate Optimization', 'Meta Ads', 'Zoho CRM', 'Tableau', 'HTML/CSS', 'Python'];
+  const skills = [
+    'Power BI (DAX, Data Modeling)',
+    'SQL (T-SQL, Stored Procedures)',
+    'SSIS & ETL Pipelines',
+    'Healthcare & Research Data',
+    'Python (Data Analysis)',
+    'Data Visualization & Dashboards',
+    'Business Intelligence',
+    'Advanced Excel',
+  ];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,36 +138,36 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-            With a core specialization in Marketing &amp; Strategy, I've orchestrated impactful
-             digital marketing campaigns for {' '}
-             <a href="https://digeca.tatasteel.com">DigECA</a> {' '}, an e-Commerce steel buying website for MSMEs at{' '} 
-             <a href="https://www.tatasteel.com">Tata Steel</a>.
+              I’m a data analyst with a strong foundation in <b>business intelligence, analytics, and healthcare data</b>,
+              currently working with tools like <b>Power BI, SQL, SSIS, and DAX</b> to build dashboards and reporting
+              systems that support real decision-making.
             </p>
 
             <p>
-            I have also spearheaded employer branding initiatives for {' '}
-            <a href="https://drive.google.com/file/d/1w-uN9jb86pxFXPYMDu_78P-d1CZJAx3V/view?usp=sharing">
-              Aditya Birla Fashion and Retail</a>, {' '} resulting in a remarkable 37% surge in consumer engagement 
-              during my remote live project as part of my MBA journey.
+              My professional journey spans multiple roles — I’ve worked as a <b>Data Analyst</b>, previously as a
+              <b> SQL & Power BI Developer</b>, and before that as a <b>Research Intern at Brigham and Women’s Hospital
+              (Harvard Medical School)</b>, where I was exposed to clinical and research-driven data environments.
             </p>
 
             <p>
-            During my tenure at {' '} <a href="https://www.amdocs.com">Amdocs</a>, {' '} 
-            where I served as a Software Developer, I had the honor of being selected as one of 16 elite {' '} 
-            <a href="https://drive.google.com/file/d/16BGu5InZZDGCtoWas560ezwKsgVBKbI9/view?usp=sharing">Innovation Agents</a>.
+              I enjoy working at the intersection of <b>data, systems, and people</b> — translating messy datasets into
+              clear insights, improving reporting workflows, and building analytics solutions that are actually usable
+              by non-technical stakeholders.
             </p>
 
             <p>
-            Moreover, my role as a {' '} <a href="https://drive.google.com/file/d/1iRTZfE7v5Y99BYZVxevaGBVtF90t-TOb/view?usp=sharing">
-              Placement Coordinator</a> {' '} at IIM Rohtak saw me cultivate over 30 new corporate relationships, culminating in a 
-              remarkable 42% boost in campus placements.
+              Lately, I’ve been exploring small side projects focused on <b>local information, productivity, and
+              user-friendly data access</b>, while continuing to deepen my interest in healthcare analytics and applied
+              data science.
             </p>
 
             <p>My skills are not limited to this list!</p>
           </div>
 
           <ul className="skills-list">
-            {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
+            {skills.map((skill, i) => (
+              <li key={i}>{skill}</li>
+            ))}
           </ul>
         </StyledText>
 

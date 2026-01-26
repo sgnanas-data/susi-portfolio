@@ -51,44 +51,42 @@ const Hero = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
-
+    if (prefersReducedMotion) return;
     const timeout = setTimeout(() => setIsMounted(true), navDelay);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [prefersReducedMotion]);
 
   const one = <h1>Namaste! My name is</h1>;
-  const two = <h2 className="big-heading">Chandrika Deb</h2>;
-  const three = <h3 className="medium-heading">MBA | Digital Marketing | Freelance Blogger</h3>;
+  const two = <h2 className="big-heading">Susitra Gnanasambhandam</h2>;
+  const three = (
+    <h3 className="medium-heading">Data Analyst | BI &amp; Analytics | Healthcare &amp; Technology</h3>
+  );
+
   const four = (
     <>
       <p>
-        <b>Glad to e-meet you!</b>
+        <b>Glad to e-meet you!</b> I turn messy data into dashboards people actually use.
       </p>
 
       <p>
-        I am Chandrika Deb, an alumnus of {' '} <a href="http://www.iimrohtak.ac.in">
-        IIM Rohtak</a> {' '} and {' '} <a href="https://www.bitmesra.ac.in">BIT Mesra</a> {' '} currently spearheading impactful digital marketing initiatives at {' '}
-        <a href="https://www.tatasteel.com">Tata Steel</a>.
+        I’m currently a <b>Data Analyst</b> (Power BI, SQL, SSIS, DAX). Previously, I worked as a{' '}
+        <b>SQL/Power BI Developer</b>, and before that I was a <b>Research Intern</b> at{' '}
+        <a href="https://www.brighamandwomens.org/" target="_blank" rel="noreferrer">
+          Brigham and Women’s Hospital (Harvard Medical School)
+        </a>
+        .
       </p>
 
-
       <p>
-        When not decoding the customer journey, you can find me sketching on {' '}
-        <a href="https://pin.it/4W1Rxtj">Pinterest</a> {' '} or writing technical blogs for {' '}
-        <a href="https://www.lambdatest.com">LambdaTest</a> {' '} and other freelance clients.
+        Lately I’ve been building a small “local guide” style project for Clemson—basically a clean, searchable
+        hub for handy campus + city info (food spots, quick picks, and useful links). More updates soon 🙂
       </p>
     </>
   );
+
   const five = (
-    <a
-      className="email-link"
-      href="https://chandrikadeb7.gumroad.com"
-      target="_blank"
-      rel="noreferrer">
-      Check out my products!
+    <a className="email-link" href="mailto:susitragnanasambhandam@gmail.com">
+      Say hi
     </a>
   );
 
