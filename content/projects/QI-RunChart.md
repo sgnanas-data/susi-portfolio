@@ -2,7 +2,7 @@
 date: '2025-11-15'
 title: 'Quality Improvement Project: Data-Driven Weight Management'
 github: ''
-external: ''
+external: '/slides/sgnanas_QI.pdf'
 tech:
   - Run Charts
   - PDSA Cycles
@@ -11,6 +11,10 @@ company: 'Healthcare Quality Improvement'
 showInProjects: true
 ---
 
-Applied formal healthcare Quality Improvement (QI) methods to a personal weight management project using outcome, process, and balancing measures.
+Applied healthcare Quality Improvement (QI) methods to a personal weight management project using outcome, process, and balancing measures.
 
-Tracked weekly data, analyzed trends using run charts, and iterated through structured PDSA cycles to drive sustained improvement.
+Used run charts and structured PDSA cycles to analyze trends and drive sustained improvement.
+
+
+
+

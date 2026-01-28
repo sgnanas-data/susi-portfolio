@@ -2,7 +2,7 @@
 date: '2025-10-10'
 title: 'Cohort Study Analysis: Smoking Cessation & Life Expectancy'
 github: ''
-external: ''
+external: '/slides/HLTH8090_Cohort_LungCancer_BritishDoctorsStudy_Susitra.pdf'
 tech:
   - Epidemiology
   - Cohort Studies

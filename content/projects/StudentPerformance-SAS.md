@@ -2,7 +2,7 @@
 date: '2024-11-05'
 title: 'Student Performance Analysis (SAS)'
 github: ''
-external: ''
+external: '/slides/SAS_Final_Project.pdf'
 tech:
   - SAS
   - Regression

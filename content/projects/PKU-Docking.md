@@ -2,7 +2,7 @@
 date: '2024-03-01'
 title: 'Phenylketonuria Mutation Study – Molecular Docking'
 github: ''
-external: ''
+external: '/slides/sgnanas_PKU.pdf'
 tech:
   - AutoDock
   - PyMOL

@@ -2,7 +2,7 @@
 date: '2025-09-01'
 title: 'Lifestyle Intervention Study for Hypertension Control'
 github: ''
-external: ''
+external: '/slides/sgnanas_HPTN.pdf'
 tech:
   - Study Design
   - RCT Methodology
@@ -13,4 +13,7 @@ showInProjects: true
 
 Designed a randomized controlled trial evaluating whether a combined plant-based diet and diaphragmatic breathing intervention improves diastolic blood pressure in adults aged 60+.
 
-Developed hypotheses, eligibility criteria, outcome measures, feasibility assessment, and a seed-grant–style proposal aligned with healthcare systems.
+Developed hypotheses, eligibility criteria, outcome measures, and a seed-grant proposal aligned with healthcare systems.
+
+
+
