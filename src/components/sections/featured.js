@@ -7,6 +7,9 @@ import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 
+const IMAGE_FRAME_HEIGHT = 320; // ✅ same height for all featured images
+const IMAGE_MAX_WIDTH = 560;    // ✅ consistent image width
+
 const StyledProjectsGrid = styled.ul`
   ${({ theme }) => theme.mixins.resetList};
 
@@ -18,44 +21,49 @@ const StyledProjectsGrid = styled.ul`
 
 const StyledProject = styled.li`
   position: relative;
-  display: grid;
-  grid-gap: 15px;
-  grid-template-columns: repeat(12, 1fr);
-  align-items: center;
 
   &:not(:last-of-type) {
     margin-bottom: 120px;
   }
 
-  &:nth-of-type(odd) {
-    .project-content {
-      grid-column: 7 / -1;
-      text-align: right;
-    }
-
-    .project-image {
-      grid-column: 1 / 7;
-    }
+  /* ✅ GUARANTEED side-by-side layout */
+  .project-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
   }
 
+  /* ✅ Alternate layout: image left / text right */
+  .project-inner.reverse {
+    flex-direction: row-reverse;
+  }
+
+  /* Text column */
   .project-content {
-    position: relative;
-    grid-column: 1 / 7;
-    z-index: 2;
+    flex: 1;
+    min-width: 0; /* prevents overflow pushing layout */
+  }
+
+  /* Right-align only heading area for alternating cards */
+  .project-inner.reverse .project-overline,
+  .project-inner.reverse .project-title {
+    text-align: right;
   }
 
   .project-overline {
     color: var(--green);
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
+    margin: 0 0 8px;
   }
 
   .project-title {
     color: var(--lightest-slate);
     font-size: clamp(26px, 5vw, 30px);
-    margin-bottom: 20px;
+    margin: 0 0 18px;
   }
 
+  /* ✅ Description stays readable and LEFT aligned always */
   .project-description {
     ${({ theme }) => theme.mixins.boxShadow};
     background-color: var(--light-navy);
@@ -64,8 +72,25 @@ const StyledProject = styled.li`
     color: var(--light-slate);
     font-size: var(--fz-lg);
 
-    /* ⭐ KEY FIX */
     max-width: 520px;
+    text-align: left;
+
+    strong {
+      color: var(--lightest-slate);
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      list-style: disc;
+      text-align: left;
+    }
+
+    li {
+      margin: 6px 0;
+    }
 
     @media (max-width: 1080px) {
       max-width: 480px;
@@ -82,60 +107,83 @@ const StyledProject = styled.li`
   .project-tech-list {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin: 18px 0 0;
     list-style: none;
 
     li {
       font-family: var(--font-mono);
       font-size: var(--fz-xs);
       margin-right: 15px;
+      margin-top: 8px;
     }
   }
 
   .project-links {
     display: flex;
     align-items: center;
-    margin-top: 15px;
+    margin-top: 10px;
 
     a {
       padding: 8px;
     }
   }
 
+  /* ✅ Image column: same height + no crop */
   .project-image {
-    ${({ theme }) => theme.mixins.boxShadow};
-    grid-column: 7 / -1;
-    justify-self: end; /* ⭐ KEY FIX */
-    position: relative;
-
-    a {
-      display: block;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-    }
-
-    .img {
-      border-radius: var(--border-radius);
-      filter: grayscale(100%) contrast(1) brightness(90%);
-      transition: var(--transition);
-    }
-
-    a:hover .img {
-      filter: none;
-    }
+    flex: 0 0 ${IMAGE_MAX_WIDTH}px;
+    max-width: ${IMAGE_MAX_WIDTH}px;
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  .project-image a {
+    display: block;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    width: 100%;
+    height: ${IMAGE_FRAME_HEIGHT}px;
+    background-color: var(--light-navy);
+    ${({ theme }) => theme.mixins.boxShadow};
+  }
 
-    .project-content,
-    .project-image {
-      grid-column: 1 / -1;
+  .img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Ensure Gatsby wrappers fill height */
+  .img > div,
+  .img picture {
+    height: 100%;
+  }
+
+  /* ✅ SHOW FULL IMAGE (no cropping) */
+  .img img {
+    object-fit: contain;
+    object-position: center;
+    background-color: var(--light-navy);
+  }
+
+  /* ✅ Mobile stack */
+  @media (max-width: 768px) {
+    .project-inner,
+    .project-inner.reverse {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .project-inner.reverse .project-overline,
+    .project-inner.reverse .project-title {
       text-align: left;
     }
 
     .project-image {
-      opacity: 0.25;
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 auto;
+    }
+
+    .project-image a {
+      height: 260px;
     }
   }
 `;
@@ -154,7 +202,7 @@ const Featured = () => {
               cover {
                 childImageSharp {
                   gatsbyImageData(
-                    width: 700
+                    width: 1000
                     placeholder: BLURRED
                     formats: [AUTO, WEBP, AVIF]
                   )
@@ -183,7 +231,7 @@ const Featured = () => {
     revealProjects.current.forEach((ref, i) =>
       sr.reveal(ref, srConfig(i * 100))
     );
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <section id="projects">
@@ -197,49 +245,50 @@ const Featured = () => {
           const { title, tech, github, external, cover, cta } = frontmatter;
           const image = getImage(cover);
 
+          // ✅ alternate layout
+          const reverse = i % 2 === 1;
+
           return (
             <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
-              <div className="project-content">
-                <p className="project-overline">Featured Project</p>
+              <div className={`project-inner ${reverse ? 'reverse' : ''}`}>
+                <div className="project-content">
+                  <p className="project-overline">Featured Project</p>
 
-                <h3 className="project-title">
-                  <a href={external}>{title}</a>
-                </h3>
+                  <h3 className="project-title">
+                    <a href={external || github || '#'}>{title}</a>
+                  </h3>
 
-                <div
-                  className="project-description"
-                  dangerouslySetInnerHTML={{ __html: html }}
-                />
+                  <div
+                    className="project-description"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                  />
 
-                <ul className="project-tech-list">
-                  {tech.map((t, i) => (
-                    <li key={i}>{t}</li>
-                  ))}
-                </ul>
+                  <ul className="project-tech-list">
+                    {tech?.map((t, idx) => (
+                      <li key={idx}>{t}</li>
+                    ))}
+                  </ul>
 
-                <div className="project-links">
-                  {cta && (
-                    <a href={cta} className="cta">
-                      View More
-                    </a>
-                  )}
-                  {github && (
-                    <a href={github}>
-                      <Icon name="GitHub" />
-                    </a>
-                  )}
-                  {external && !cta && (
-                    <a href={external}>
-                      <Icon name="External" />
-                    </a>
-                  )}
+                  <div className="project-links">
+                    {cta && <a href={cta}>View More</a>}
+                    {github && (
+                      <a href={github} aria-label="GitHub">
+                        <Icon name="GitHub" />
+                      </a>
+                    )}
+                    {external && !cta && (
+                      <a href={external} aria-label="External Link">
+                        <Icon name="External" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div className="project-image">
-                <a href={external || github}>
-                  <GatsbyImage image={image} alt={title} className="img" />
-                </a>
+                <div className="project-image">
+                  <a href={external || github || '#'} aria-label={title}>
+                    <GatsbyImage image={image} alt={title} className="img" />
+                  </a>
+                </div>
               </div>
             </StyledProject>
           );
