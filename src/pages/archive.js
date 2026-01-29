@@ -198,16 +198,6 @@ const ArchivePage = ({ location, data }) => {
 
                     <td className="links">
                       <div>
-                        {external && (
-                          <a
-                            href={withPrefix(external)}
-                            aria-label="External Link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Icon name="External" />
-                          </a>
-                        )}
                         {github && (
                           <a
                             href={github}
@@ -216,6 +206,16 @@ const ArchivePage = ({ location, data }) => {
                             rel="noopener noreferrer"
                           >
                             <Icon name="GitHub" />
+                          </a>
+                        )}
+                        {external && (
+                          <a
+                            href={withPrefix(external)}
+                            aria-label="External Link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Icon name="External" />
                           </a>
                         )}
                       </div>
