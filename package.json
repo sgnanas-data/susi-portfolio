@@ -2,10 +2,11 @@
   "name": "v2",
   "description": "Personal Website V2",
   "version": "1.0.0",
-  "author": "Chandrika Deb <chandrikadeb7@gmail.com>",
+  "homepage": "https://sgnanas-data.github.io/susi-portfolio/",
+  "author": "Susitra Gnanasambhandam",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chandrikadeb7/chandrikadeb7.github.io"
+    "url": "https://github.com/sgnanas-data/susi-portfolio"
   },
   "keywords": [
     "gatsby"
@@ -13,13 +14,14 @@
   "license": "MIT",
   "browserslist": "> 0.25%, not dead",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy": "gatsby build && gh-pages -d public -b master",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public",
     "prepare": "husky install",
     "lint-staged": "lint-staged"
   },

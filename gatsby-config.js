@@ -1,11 +1,13 @@
 const config = require('./src/config');
 
 module.exports = {
+  pathPrefix: `/susi-portfolio`,
+
   siteMetadata: {
     title: 'Susitra Portfolio',
     description:
       'Susitra is a Data Analyst and BI Developer specializing in Power BI, SQL, ETL, and healthcare analytics.',
-    siteUrl: 'https://YOUR-URL-HERE',
+    siteUrl: 'https://sgnanas-data.github.io/susi-portfolio',
     image: '/og.png',
     twitterUsername: '',
   },
@@ -99,7 +101,6 @@ module.exports = {
       },
     },
 
-    // OPTIONAL: remove later if you don't have your own tracking id
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

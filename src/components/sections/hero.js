@@ -10,39 +10,58 @@ const StyledHeroSection = styled.section`
   align-items: flex-start;
   min-height: 100vh;
   height: 100vh;
-  padding: 0;
+
+  /* ✅ EMERGENCY FIX: Significantly increase top padding */
+  padding-top: calc(var(--nav-height) + 80px) !important; /* Increased to 80px */
+  padding-left: 24px;
+  padding-right: 24px;
 
   @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
     height: auto;
-    padding-top: var(--nav-height);
+    padding-top: calc(var(--nav-height) + 80px) !important; /* Also updated here */
   }
 
   h1 {
-    margin: 0 0 30px 4px;
+    /* ✅ Add margin-top to push it even further down */
+    margin: 20px 0 20px 4px !important; /* Added top margin */
     color: var(--green);
     font-family: var(--font-mono);
     font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
     font-weight: 400;
+    z-index: 1;
+    position: relative;
+    /* Ensure text doesn't get cut at top */
+    padding-top: 8px !important;
 
     @media (max-width: 480px) {
-      margin: 0 0 20px 2px;
+      margin: 20px 0 16px 2px !important;
     }
   }
 
-  h3 {
-    margin-top: 5px;
+  .big-heading {
+    margin: 0;
+    font-size: clamp(40px, 8vw, 80px);
+    line-height: 1.1;
+  }
+
+  .medium-heading {
+    margin: 10px 0 0 0;
     color: var(--slate);
-    line-height: 0.9;
+    font-size: clamp(20px, 4vw, 40px);
+    line-height: 1.1;
   }
 
   p {
-    margin: 20px 0 0;
+    margin: 24px 0 0;
     max-width: 540px;
+    line-height: 1.5;
   }
 
   .email-link {
     ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
+    position: relative;
+    z-index: 1;
   }
 `;
 
@@ -64,21 +83,19 @@ const Hero = () => {
 
   const four = (
     <>
-      <p>
-        I turn messy data into dashboards people actually use.
-      </p>
+      <p>I turn messy data into dashboards people actually use.</p>
 
       <p>
-        I’m currently a <b>Data Analyst</b> (Power BI, SQL, SSIS, DAX). Previously, I worked as a{' '}
+        I'm currently a <b>Data Analyst</b> (Power BI, SQL, SSIS, DAX). Previously, I worked as a{' '}
         <b>SQL/Power BI Developer</b>. Before that, I was a <b>Research Intern</b> at{' '}
         <a href="https://www.brighamandwomens.org/" target="_blank" rel="noreferrer">
-          Brigham and Women’s Hospital (Harvard Medical School)
+          Brigham and Women's Hospital (Harvard Medical School)
         </a>
         .
       </p>
 
       <p>
-        Lately, I’ve been building a small “local guide” style project for Clemson. It’s a clean, searchable hub for
+        Lately, I've been building a small "local guide" style project for Clemson. It's a clean, searchable hub for
         campus and city info like food spots, quick picks, and useful links. More updates soon.
       </p>
     </>
@@ -93,7 +110,7 @@ const Hero = () => {
   const items = [one, two, three, four, five];
 
   return (
-    <StyledHeroSection>
+    <StyledHeroSection id="home">
       {prefersReducedMotion ? (
         <>
           {items.map((item, i) => (
