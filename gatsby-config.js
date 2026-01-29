@@ -20,8 +20,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sitemap`,
 
-    // TEMP: Remove this because it's incompatible with Gatsby 3 and causes warnings
-    // `gatsby-plugin-robots-txt`,
+    // Add this for better path prefix handling
 
     {
       resolve: `gatsby-plugin-manifest`,
@@ -50,6 +49,13 @@ module.exports = {
       options: {
         name: 'content',
         path: `${__dirname}/content/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `featured`,  // ADD THIS FOR FEATURED PROJECTS
+        path: `${__dirname}/content/featured/`,
       },
     },
     {
