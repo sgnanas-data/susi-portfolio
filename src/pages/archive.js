@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, withPrefix } from 'gatsby';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
@@ -137,14 +137,14 @@ const ArchivePage = ({ location, data }) => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
+    if (prefersReducedMotion) return;
 
     sr.reveal(revealTitle.current, srConfig());
     sr.reveal(revealTable.current, srConfig(200, 0));
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
-  }, []);
+    revealProjects.current.forEach((ref, i) =>
+      sr.reveal(ref, srConfig(i * 10))
+    );
+  }, [prefersReducedMotion]);
 
   return (
     <Layout location={location}>
@@ -167,55 +167,62 @@ const ArchivePage = ({ location, data }) => {
                 <th>Link</th>
               </tr>
             </thead>
+
             <tbody>
-              {projects.length > 0 &&
-                projects.map(({ node }, i) => {
-                  const {
-                    date,
-                    github,
-                    external,
-                    title,
-                    tech,
-                    company,
-                  } = node.frontmatter;
-                  return (
-                    <tr key={i} ref={el => (revealProjects.current[i] = el)}>
-                      <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
+              {projects.map(({ node }, i) => {
+                const { date, github, external, title, tech, company } =
+                  node.frontmatter;
 
-                      <td className="title">{title}</td>
+                return (
+                  <tr key={i} ref={el => (revealProjects.current[i] = el)}>
+                    <td className="overline year">
+                      {new Date(date).getFullYear()}
+                    </td>
 
-                      <td className="company hide-on-mobile">
-                        {company ? <span>{company}</span> : <span>—</span>}
-                      </td>
+                    <td className="title">{title}</td>
 
-                      <td className="tech hide-on-mobile">
-                        {tech?.length > 0 &&
-                          tech.map((item, i) => (
-                            <span key={i}>
-                              {item}
-                              {''}
-                              {i !== tech.length - 1 && <span className="separator">&middot;</span>}
-                            </span>
-                          ))}
-                      </td>
+                    <td className="company hide-on-mobile">
+                      {company || '—'}
+                    </td>
 
-                      <td className="links">
-                        <div>
-                          {external && (
-                            <a href={external} aria-label="External Link">
-                              <Icon name="External" />
-                            </a>
+                    <td className="tech hide-on-mobile">
+                      {tech?.map((item, idx) => (
+                        <span key={idx}>
+                          {item}
+                          {idx !== tech.length - 1 && (
+                            <span className="separator">&middot;</span>
                           )}
-                          {github && (
-                            <a href={github} aria-label="GitHub Link">
-                              <Icon name="GitHub" />
-                            </a>
-                          )}
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
+                        </span>
+                      ))}
+                    </td>
+
+                    <td className="links">
+                      <div>
+                        {external && (
+                          <a
+                            href={withPrefix(external)}
+                            aria-label="External Link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Icon name="External" />
+                          </a>
+                        )}
+                        {github && (
+                          <a
+                            href={github}
+                            aria-label="GitHub Link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Icon name="GitHub" />
+                          </a>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </StyledTableContainer>
@@ -223,6 +230,7 @@ const ArchivePage = ({ location, data }) => {
     </Layout>
   );
 };
+
 ArchivePage.propTypes = {
   location: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
@@ -246,7 +254,6 @@ export const pageQuery = graphql`
             external
             company
           }
-          html
         }
       }
     }
