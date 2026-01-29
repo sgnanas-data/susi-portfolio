@@ -1,7 +1,7 @@
 ---
 date: '2025-02-01'
 title: 'FHIR Bulk Data Ingestion Pipeline (MongoDB + Python)'
-cover: './cover.png'
+cover: /featured/fhir.png
 tech:
   - Python
   - MongoDB

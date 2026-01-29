@@ -1,14 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 
-const IMAGE_FRAME_HEIGHT = 320; // ✅ same height for all featured images
-const IMAGE_MAX_WIDTH = 560;    // ✅ consistent image width
+const IMAGE_FRAME_HEIGHT = 320; // same height for all featured images
+const IMAGE_MAX_WIDTH = 560; // consistent image width
 
 const StyledProjectsGrid = styled.ul`
   ${({ theme }) => theme.mixins.resetList};
@@ -26,14 +25,14 @@ const StyledProject = styled.li`
     margin-bottom: 120px;
   }
 
-  /* ✅ GUARANTEED side-by-side layout */
+  /* Side-by-side layout */
   .project-inner {
     display: flex;
     align-items: center;
     gap: 40px;
   }
 
-  /* ✅ Alternate layout: image left / text right */
+  /* Alternate layout: image left / text right */
   .project-inner.reverse {
     flex-direction: row-reverse;
   }
@@ -41,13 +40,16 @@ const StyledProject = styled.li`
   /* Text column */
   .project-content {
     flex: 1;
-    min-width: 0; /* prevents overflow pushing layout */
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
   }
 
-  /* Right-align only heading area for alternating cards */
+  /* Keep heading left even on reverse */
   .project-inner.reverse .project-overline,
   .project-inner.reverse .project-title {
-    text-align: right;
+    text-align: left;
   }
 
   .project-overline {
@@ -63,7 +65,7 @@ const StyledProject = styled.li`
     margin: 0 0 18px;
   }
 
-  /* ✅ Description stays readable and LEFT aligned always */
+  /* Description */
   .project-description {
     ${({ theme }) => theme.mixins.boxShadow};
     background-color: var(--light-navy);
@@ -128,7 +130,7 @@ const StyledProject = styled.li`
     }
   }
 
-  /* ✅ Image column: same height + no crop */
+  /* Image column */
   .project-image {
     flex: 0 0 ${IMAGE_MAX_WIDTH}px;
     max-width: ${IMAGE_MAX_WIDTH}px;
@@ -144,25 +146,17 @@ const StyledProject = styled.li`
     ${({ theme }) => theme.mixins.boxShadow};
   }
 
+  /* Now .img IS the image */
   .img {
     width: 100%;
     height: 100%;
-  }
-
-  /* Ensure Gatsby wrappers fill height */
-  .img > div,
-  .img picture {
-    height: 100%;
-  }
-
-  /* ✅ SHOW FULL IMAGE (no cropping) */
-  .img img {
-    object-fit: contain;
+    object-fit: contain; /* show full image */
     object-position: center;
     background-color: var(--light-navy);
+    display: block;
   }
 
-  /* ✅ Mobile stack */
+  /* Mobile stack */
   @media (max-width: 768px) {
     .project-inner,
     .project-inner.reverse {
@@ -199,15 +193,7 @@ const Featured = () => {
           node {
             frontmatter {
               title
-              cover {
-                childImageSharp {
-                  gatsbyImageData(
-                    width: 1000
-                    placeholder: BLURRED
-                    formats: [AUTO, WEBP, AVIF]
-                  )
-                }
-              }
+              cover
               tech
               github
               external
@@ -228,9 +214,7 @@ const Featured = () => {
   useEffect(() => {
     if (prefersReducedMotion) return;
     sr.reveal(revealTitle.current, srConfig());
-    revealProjects.current.forEach((ref, i) =>
-      sr.reveal(ref, srConfig(i * 100))
-    );
+    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, [prefersReducedMotion]);
 
   return (
@@ -243,9 +227,7 @@ const Featured = () => {
         {featuredProjects.map(({ node }, i) => {
           const { frontmatter, html } = node;
           const { title, tech, github, external, cover, cta } = frontmatter;
-          const image = getImage(cover);
 
-          // ✅ alternate layout
           const reverse = i % 2 === 1;
 
           return (
@@ -258,10 +240,8 @@ const Featured = () => {
                     <a href={external || github || '#'}>{title}</a>
                   </h3>
 
-                  <div
-                    className="project-description"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                  />
+
+                  <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
 
                   <ul className="project-tech-list">
                     {tech?.map((t, idx) => (
@@ -270,7 +250,6 @@ const Featured = () => {
                   </ul>
 
                   <div className="project-links">
-                    {cta && <a href={cta}>View More</a>}
                     {github && (
                       <a href={github} aria-label="GitHub">
                         <Icon name="GitHub" />
@@ -286,7 +265,7 @@ const Featured = () => {
 
                 <div className="project-image">
                   <a href={external || github || '#'} aria-label={title}>
-                    <GatsbyImage image={image} alt={title} className="img" />
+                    <img src={cover} alt={title} className="img" loading="lazy" />
                   </a>
                 </div>
               </div>

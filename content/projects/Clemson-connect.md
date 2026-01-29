@@ -11,6 +11,6 @@ company: 'Side Project'
 showInProjects: true
 ---
 
-Designed an MVP concept to help Clemson students connect quickly around food cravings, weekend plans, and local events.
+Currently in the process of designing an early-stage MVP concept focused on lightweight, low-friction student connections within a campus setting.
 
-Focused on reducing friction and loneliness through a simple “Join Me” flow rather than complex social features.
+Exploring how minimal, intentional design choices can encourage organic participation without relying on traditional social networking features.

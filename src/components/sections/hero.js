@@ -56,7 +56,7 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, [prefersReducedMotion]);
 
-  const one = <h1>Namaste! My name is</h1>;
+  const one = <h1>Glad to e-meet you! My name is</h1>;
   const two = <h2 className="big-heading">Susitra Gnanasambhandam</h2>;
   const three = (
     <h3 className="medium-heading">Data Analyst | BI &amp; Analytics | Healthcare &amp; Technology</h3>
@@ -65,12 +65,12 @@ const Hero = () => {
   const four = (
     <>
       <p>
-        <b>Glad to e-meet you!</b> I turn messy data into dashboards people actually use.
+        I turn messy data into dashboards people actually use.
       </p>
 
       <p>
         I’m currently a <b>Data Analyst</b> (Power BI, SQL, SSIS, DAX). Previously, I worked as a{' '}
-        <b>SQL/Power BI Developer</b>, and before that I was a <b>Research Intern</b> at{' '}
+        <b>SQL/Power BI Developer</b>. Before that, I was a <b>Research Intern</b> at{' '}
         <a href="https://www.brighamandwomens.org/" target="_blank" rel="noreferrer">
           Brigham and Women’s Hospital (Harvard Medical School)
         </a>
@@ -78,8 +78,8 @@ const Hero = () => {
       </p>
 
       <p>
-        Lately I’ve been building a small “local guide” style project for Clemson—basically a clean, searchable
-        hub for handy campus + city info (food spots, quick picks, and useful links). More updates soon 🙂
+        Lately, I’ve been building a small “local guide” style project for Clemson. It’s a clean, searchable hub for
+        campus and city info like food spots, quick picks, and useful links. More updates soon.
       </p>
     </>
   );

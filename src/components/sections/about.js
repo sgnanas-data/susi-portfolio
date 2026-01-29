@@ -121,7 +121,7 @@ const About = () => {
 
   const skills = [
     'Power BI (DAX, Data Modeling)',
-    'SQL (T-SQL, Stored Procedures)',
+    'SQL (Stored Procedures)',
     'SSIS & ETL Pipelines',
     'Healthcare & Research Data',
     'Python (Data Analysis)',
@@ -138,27 +138,26 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              I’m a data analyst with a strong foundation in <b>business intelligence, analytics, and healthcare data</b>,
-              currently working with tools like <b>Power BI, SQL, SSIS, and DAX</b> to build dashboards and reporting
-              systems that support real decision-making.
+              I’m a data analyst with a strong foundation in <b>business intelligence, analytics, and healthcare data</b>.
+              I work with <b>Power BI, SQL, SSIS, and DAX</b> to build dashboards and reporting systems that support real
+              decision-making.
             </p>
 
             <p>
-              My professional journey spans multiple roles — I’ve worked as a <b>Data Analyst</b>, previously as a
-              <b> SQL & Power BI Developer</b>, and before that as a <b>Research Intern at Brigham and Women’s Hospital
-              (Harvard Medical School)</b>, where I was exposed to clinical and research-driven data environments.
+              I’ve worked as a <b>Data Analyst</b>, and previously as a <b>SQL & Power BI Developer</b>. Before that, I
+              was a <b>Research Intern at Brigham and Women’s Hospital (Harvard Medical School)</b>, where I gained
+              exposure to clinical and research-driven data environments.
             </p>
 
             <p>
-              I enjoy working at the intersection of <b>data, systems, and people</b> — translating messy datasets into
-              clear insights, improving reporting workflows, and building analytics solutions that are actually usable
-              by non-technical stakeholders.
+              I enjoy working at the intersection of <b>data, systems, and people</b>. I translate messy datasets into
+              clear insights, improve reporting workflows, and build analytics solutions that non-technical stakeholders
+              can actually use.
             </p>
 
             <p>
-              Lately, I’ve been exploring small side projects focused on <b>local information, productivity, and
-              user-friendly data access</b>, while continuing to deepen my interest in healthcare analytics and applied
-              data science.
+              Lately, I’ve been exploring side projects focused on <b>local information, productivity, and user-friendly
+              data access</b>. I’m also continuing to deepen my interest in healthcare analytics and applied data science.
             </p>
 
             <p>My skills are not limited to this list!</p>

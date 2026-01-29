@@ -1,7 +1,7 @@
 ---
 date: '2025-01-15'
 title: 'Power BI Sales & Orders Dashboard'
-cover: './cover.png'
+cover: /featured/powerbi.png
 tech:
   - Power BI
   - DAX
