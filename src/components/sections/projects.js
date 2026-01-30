@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql, withPrefix } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -197,23 +197,29 @@ const Projects = () => {
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      return;
-    }
+    if (prefersReducedMotion) return;
 
     sr.reveal(revealTitle.current, srConfig());
     sr.reveal(revealArchiveLink.current, srConfig());
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
-  }, []);
+  }, [prefersReducedMotion]);
 
   const GRID_LIMIT = 6;
   const projects = data.projects.edges.filter(({ node }) => node);
   const firstSix = projects.slice(0, GRID_LIMIT);
   const projectsToShow = showMore ? projects : firstSix;
 
+  // ✅ Fix: GitHub Pages needs /susi-portfolio prefix for internal static links like /slides/...
+  const normalizeExternal = url => {
+    if (!url) return url;
+    return url.startsWith('/') ? withPrefix(url) : url;
+  };
+
   const projectInner = node => {
     const { frontmatter, html } = node;
     const { github, external, title, tech } = frontmatter;
+
+    const externalUrl = normalizeExternal(external);
 
     return (
       <div className="project-inner">
@@ -222,19 +228,22 @@ const Projects = () => {
             <div className="folder">
               <Icon name="Folder" />
             </div>
+
             <div className="project-links">
               {github && (
-                <a href={github} aria-label="GitHub Link" target="_blank" rel="noreferrer">
+                <a href={github} aria-label="GitHub Link" target="_blank" rel="noopener noreferrer">
                   <Icon name="GitHub" />
                 </a>
               )}
-              {external && (
+
+              {externalUrl && (
                 <a
-                  href={external}
+                  href={externalUrl}
                   aria-label="External Link"
                   className="external"
                   target="_blank"
-                  rel="noreferrer">
+                  rel="noopener noreferrer"
+                >
                   <Icon name="External" />
                 </a>
               )}
@@ -242,9 +251,13 @@ const Projects = () => {
           </div>
 
           <h3 className="project-title">
-            <a href={external} target="_blank" rel="noreferrer">
-              {title}
-            </a>
+            {externalUrl ? (
+              <a href={externalUrl} target="_blank" rel="noopener noreferrer">
+                {title}
+              </a>
+            ) : (
+              <span>{title}</span>
+            )}
           </h3>
 
           <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
@@ -253,8 +266,8 @@ const Projects = () => {
         <footer>
           {tech && (
             <ul className="project-tech-list">
-              {tech.map((tech, i) => (
-                <li key={i}>{tech}</li>
+              {tech.map((t, i) => (
+                <li key={i}>{t}</li>
               ))}
             </ul>
           )}
@@ -266,7 +279,6 @@ const Projects = () => {
   return (
     <StyledProjectsSection>
       <h2 ref={revealTitle}>Projects | Research | Coursework</h2>
-
 
       <Link className="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
         View Archive
@@ -288,13 +300,15 @@ const Projects = () => {
                   key={i}
                   classNames="fadeup"
                   timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                  exit={false}>
+                  exit={false}
+                >
                   <StyledProject
                     key={i}
                     ref={el => (revealProjects.current[i] = el)}
                     style={{
                       transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                    }}>
+                    }}
+                  >
                     {projectInner(node)}
                   </StyledProject>
                 </CSSTransition>
