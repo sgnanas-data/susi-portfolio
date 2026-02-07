@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'gatsby';
+import { Link, withPrefix } from 'gatsby';
 import styled from 'styled-components';
 import { navLinks } from '@config';
 import { KEY_CODES } from '@utils';
@@ -266,9 +266,13 @@ const Menu = () => {
               </ol>
             )}
 
-            <a href="/resume.pdf" className="resume-link">
-              Resume
-            </a>
+            <a href={withPrefix('/resume-data-analyst.pdf?v=20260207')} className="resume-link" target="_blank" rel="noopener noreferrer">
+  Resume (Data)
+</a>
+
+<a href={withPrefix('/resume-healthcare.pdf?v=20260207')} className="resume-link" target="_blank" rel="noopener noreferrer" style={{ marginTop: '12px' }}>
+  Resume (Healthcare)
+</a>
           </nav>
         </StyledSidebar>
       </div>

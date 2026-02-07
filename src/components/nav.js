@@ -209,7 +209,7 @@ const Nav = ({ isHome }) => {
   <>
     <a
       className="resume-button"
-      href={withPrefix('/resume-data-analyst.pdf')}
+      href={withPrefix('/resume-data-analyst.pdf?v=20260207')}
       target="_blank"
       rel="noopener noreferrer">
       Resume (Data)
@@ -217,7 +217,7 @@ const Nav = ({ isHome }) => {
 
     <a
       className="resume-button"
-      href={withPrefix('/resume-healthcare.pdf')}
+      href={withPrefix('/resume-healthcare.pdf?v=20260207')}
       target="_blank"
       rel="noopener noreferrer"
       style={{ marginLeft: '10px' }}>
