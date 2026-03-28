@@ -442,6 +442,12 @@ const GlobalStyle = createGlobalStyle`
   .gatsby-image-outer-wrapper {
     height: 100%;
   }
+  /* Hide "View More" link in featured section */
+  a[href="#view-more"],
+  a.view-more,
+  .view-more {
+    display: none !important;
+  }
 
   ${TransitionStyles};
 

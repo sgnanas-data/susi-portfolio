@@ -1,6 +1,6 @@
 ---
 date: '2025-04-01'
-title: 'Data Analyst'
+title: 'Analyst - Data & Business Intelligence'
 company: 'Cozy Systems'
 location: 'Remote (US)'
 range: 'Apr 2025 – Dec 2025'

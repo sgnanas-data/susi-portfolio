@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Gatsby Develop",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/gatsby-cli/cli.js", "develop"],
+      "port": 8000
+    },
+    {
+      "name": "Gatsby Serve",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/gatsby-cli/cli.js", "serve"],
+      "port": 9000
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 date: '2024-01-01'
-title: 'SQL & Power BI Developer'
+title: 'Analyst - Data & BI Engineering'
 company: 'Cozy Systems'
 location: ''
 range: 'Nov 2023 – Aug 2024'

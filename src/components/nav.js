@@ -206,25 +206,14 @@ const Nav = ({ isHome }) => {
   );
 
   const ResumeLinks = (
-  <>
     <a
       className="resume-button"
       href="/resume-data-analyst.pdf"
       target="_blank"
       rel="noopener noreferrer">
-      Resume (Data)
+      Resume
     </a>
-
-    <a
-      className="resume-button"
-      href="/resume-healthcare.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{ marginLeft: '10px' }}>
-      Resume (Healthcare)
-    </a>
-  </>
-);
+  );
 
 
   return (
