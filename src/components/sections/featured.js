@@ -1,13 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby'; // Removed withPrefix import
 import styled from 'styled-components';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 
-const IMAGE_FRAME_HEIGHT = 320; // same height for all featured images
-const IMAGE_MAX_WIDTH = 560; // consistent image width
+const IMAGE_FRAME_HEIGHT = 320;
+const IMAGE_MAX_WIDTH = 560;
 
 const StyledProjectsGrid = styled.ul`
   ${({ theme }) => theme.mixins.resetList};
@@ -20,33 +20,38 @@ const StyledProjectsGrid = styled.ul`
 
 const StyledProject = styled.li`
   position: relative;
+  width: 100%;
 
   &:not(:last-of-type) {
     margin-bottom: 120px;
   }
 
-  /* Side-by-side layout */
   .project-inner {
     display: flex;
     align-items: center;
     gap: 40px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
   }
 
-  /* Alternate layout: image left / text right */
   .project-inner.reverse {
     flex-direction: row-reverse;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
-  /* Text column */
   .project-content {
     flex: 1;
     min-width: 0;
-  }
-
-  /* Keep heading left even on reverse */
-  .project-inner.reverse .project-overline,
-  .project-inner.reverse .project-title {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .project-overline {
@@ -60,9 +65,15 @@ const StyledProject = styled.li`
     color: var(--lightest-slate);
     font-size: clamp(26px, 5vw, 30px);
     margin: 0 0 18px;
+
+    a {
+      &:hover,
+      &:focus {
+        color: var(--green);
+      }
+    }
   }
 
-  /* Description */
   .project-description {
     ${({ theme }) => theme.mixins.boxShadow};
     background-color: var(--light-navy);
@@ -70,7 +81,6 @@ const StyledProject = styled.li`
     border-radius: var(--border-radius);
     color: var(--light-slate);
     font-size: var(--fz-lg);
-
     max-width: 520px;
     text-align: left;
 
@@ -124,13 +134,24 @@ const StyledProject = styled.li`
 
     a {
       padding: 8px;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 
-  /* Image column */
   .project-image {
     flex: 0 0 ${IMAGE_MAX_WIDTH}px;
     max-width: ${IMAGE_MAX_WIDTH}px;
+    position: relative;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      max-width: 100%;
+      flex: 0 0 auto;
+    }
   }
 
   .project-image a {
@@ -147,32 +168,19 @@ const StyledProject = styled.li`
   .img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* show full image */
+    object-fit: contain;
     object-position: center;
     background-color: var(--light-navy);
     display: block;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
   }
 
-  /* Mobile stack */
+
   @media (max-width: 768px) {
-    .project-inner,
-    .project-inner.reverse {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-    }
-
-    .project-inner.reverse .project-overline,
-    .project-inner.reverse .project-title {
-      text-align: left;
-    }
-
-    .project-image {
-      width: 100%;
-      max-width: 100%;
-      flex: 0 0 auto;
-    }
-
     .project-image a {
       height: 260px;
     }
@@ -234,10 +242,19 @@ const Featured = () => {
                   <p className="project-overline">Featured Project</p>
 
                   <h3 className="project-title">
-                    <a href={external || github || '#'}>{title}</a>
+                    <a 
+                      href={external || github || '#'} 
+                      target={external || github ? "_blank" : "_self"}
+                      rel={external || github ? "noreferrer noopener" : ""}
+                    >
+                      {title}
+                    </a>
                   </h3>
 
-                  <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
+                  <div
+                    className="project-description"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                  />
 
                   <ul className="project-tech-list">
                     {tech?.map((t, idx) => (
@@ -246,14 +263,23 @@ const Featured = () => {
                   </ul>
 
                   <div className="project-links">
-                    {cta && <a href={cta}>View More</a>}
                     {github && (
-                      <a href={github} aria-label="GitHub">
+                      <a 
+                        href={github} 
+                        aria-label="GitHub"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
                         <Icon name="GitHub" />
                       </a>
                     )}
                     {external && !cta && (
-                      <a href={external} aria-label="External Link">
+                      <a 
+                        href={external} 
+                        aria-label="External Link"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
                         <Icon name="External" />
                       </a>
                     )}
@@ -261,8 +287,19 @@ const Featured = () => {
                 </div>
 
                 <div className="project-image">
-                  <a href={external || github || '#'} aria-label={title}>
-                    <img src={cover} alt={title} className="img" loading="lazy" />
+                  <a
+                    href={external || github || '#'}
+                    aria-label={title}
+                    target={external || github ? "_blank" : "_self"}
+                    rel={external || github ? "noreferrer noopener" : ""}
+                  >
+                    {/* CHANGED: Use __PATH_PREFIX__ for guaranteed path prefixing */}
+                    <img
+                      src={`${__PATH_PREFIX__ || ''}${cover}`}
+                      alt={title}
+                      className="img"
+                      loading="lazy"
+                    />
                   </a>
                 </div>
               </div>

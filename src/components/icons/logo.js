@@ -14,17 +14,9 @@ const IconLogo = () => (
         />
       </g>
     </g>
-   <text
-  x="41"
-  y="63"              /* ⬅️ nudged up */
-  fill="currentColor"
-  fontSize="50px"
-  fontFamily="Consolas, serif"
-  textAnchor="middle"
->
-  S
-</text>
-
+    <text x="28" y="70" fill="currentColor" fontSize="55px" fontFamily="Consolas, serif">
+      S
+    </text>
   </svg>
 );
 

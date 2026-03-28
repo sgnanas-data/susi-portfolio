@@ -1,11 +1,13 @@
 const config = require('./src/config');
 
 module.exports = {
+  pathPrefix: `/susi-portfolio`,
+
   siteMetadata: {
     title: 'Susitra Portfolio',
     description:
       'Susitra is a Data Analyst and BI Developer specializing in Power BI, SQL, ETL, and healthcare analytics.',
-    siteUrl: 'https://YOUR-URL-HERE',
+    siteUrl: 'https://sgnanas-data.github.io/susi-portfolio',
     image: '/og.png',
     twitterUsername: '',
   },
@@ -18,8 +20,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sitemap`,
 
-    // TEMP: Remove this because it's incompatible with Gatsby 3 and causes warnings
-    // `gatsby-plugin-robots-txt`,
+    // Add this for better path prefix handling
 
     {
       resolve: `gatsby-plugin-manifest`,
@@ -30,7 +31,7 @@ module.exports = {
         background_color: config.colors.darkNavy,
         theme_color: config.colors.navy,
         display: 'minimal-ui',
-        icon: 'src/images/logo.png', // REQUIRED
+        icon: 'src/images/logo.png',
       },
     },
 
@@ -48,6 +49,13 @@ module.exports = {
       options: {
         name: 'content',
         path: `${__dirname}/content/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `featured`,  // ADD THIS FOR FEATURED PROJECTS
+        path: `${__dirname}/content/featured/`,
       },
     },
     {
@@ -99,7 +107,6 @@ module.exports = {
       },
     },
 
-    // OPTIONAL: remove later if you don't have your own tracking id
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

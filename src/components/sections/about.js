@@ -138,16 +138,16 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              I'm a Data Analyst with experience spanning <b>e-commerce, retail, and healthcare</b> domains.
+              I’m a Data Analyst with experience spanning <b>e-commerce, retail, and healthcare</b> domains.
               I work with <b>Power BI, SQL, Snowflake, and Python</b> to build dashboards and reporting systems
               that drive real decision-making.
             </p>
 
             <p>
-              I've delivered analytics solutions in <b>Agile and SAFe environments</b>, collaborating with
+              I’ve delivered analytics solutions in <b>Agile and SAFe environments</b>, collaborating with
               cross-functional teams to translate business requirements into actionable insights. My background
-              includes work as a <b>Data Analyst</b>, a <b>SQL & Power BI Developer</b>, and a{' '}
-              <b>Research Intern at Brigham and Women's Hospital (Harvard Medical School)</b>.
+              includes work as a <b>Data Analyst</b>, a <b>SQL & Power BI Developer</b>, and a{‘ ‘}
+              <b>Research Intern at Brigham and Women’s Hospital (Harvard Medical School)</b>.
             </p>
 
             <p>
@@ -157,7 +157,7 @@ const About = () => {
             </p>
 
             <p>
-              Lately, I've been exploring side projects focused on <b>local information, productivity, and user-friendly
+              Lately, I’ve been exploring side projects focused on <b>local information, productivity, and user-friendly
               data access</b>.
             </p>
 

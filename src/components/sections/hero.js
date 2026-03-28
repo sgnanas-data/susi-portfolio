@@ -27,20 +27,30 @@ const StyledHeroSection = styled.section`
     }
   }
 
-  h3 {
-    margin-top: 5px;
+  .big-heading {
+    margin: 0;
+    font-size: clamp(40px, 8vw, 80px);
+    line-height: 1.1;
+  }
+
+  .medium-heading {
+    margin: 10px 0 0 0;
     color: var(--slate);
-    line-height: 0.9;
+    font-size: clamp(20px, 4vw, 40px);
+    line-height: 1.1;
   }
 
   p {
-    margin: 20px 0 0;
+    margin: 24px 0 0;
     max-width: 540px;
+    line-height: 1.5;
   }
 
   .email-link {
     ${({ theme }) => theme.mixins.bigButton};
     margin-top: 50px;
+    position: relative;
+    z-index: 1;
   }
 `;
 
@@ -67,10 +77,10 @@ const Hero = () => {
       </p>
 
       <p>
-        I’m currently a <b>Data Analyst</b> (Power BI, SQL, SSIS, DAX). Previously, I worked as a{' '}
+        I’m currently a <b>Data Analyst</b> (Power BI, SQL, SSIS, DAX). Previously, I worked as a{‘ ‘}
         <b>SQL/Power BI Developer</b>. Before that, I was a <b>Research Intern</b> at{' '}
         <a href="https://www.brighamandwomens.org/" target="_blank" rel="noreferrer">
-          Brigham and Women’s Hospital (Harvard Medical School)
+          Brigham and Women's Hospital (Harvard Medical School)
         </a>
         .
       </p>
