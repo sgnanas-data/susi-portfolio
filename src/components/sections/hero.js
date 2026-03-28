@@ -77,7 +77,7 @@ const Hero = () => {
       </p>
 
       <p>
-        I’m currently a <b>Data Analyst</b> (Power BI, SQL, SSIS, DAX). Previously, I worked as a{‘ ‘}
+        I'm currently a <b>Data Analyst</b> (Power BI, SQL, SSIS, DAX). Previously, I worked as a{' '}
         <b>SQL/Power BI Developer</b>. Before that, I was a <b>Research Intern</b> at{' '}
         <a href="https://www.brighamandwomens.org/" target="_blank" rel="noreferrer">
           Brigham and Women's Hospital (Harvard Medical School)
@@ -86,7 +86,7 @@ const Hero = () => {
       </p>
 
       <p>
-        Lately, I’ve been building a small “local guide” style project for Clemson. It’s a clean, searchable hub for
+        Lately, I've been building a small "local guide" style project for Clemson. It's a clean, searchable hub for
         campus and city info like food spots, quick picks, and useful links. More updates soon.
       </p>
     </>
