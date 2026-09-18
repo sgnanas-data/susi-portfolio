@@ -144,16 +144,23 @@ const About = () => {
             </p>
 
             <p>
-              I've delivered analytics solutions in <b>Agile and SAFe environments</b>, collaborating with
-              cross-functional teams to translate business requirements into actionable insights. My background
-              includes work as a <b>Data Analyst</b>, a <b>SQL & Power BI Developer</b>, and a{' '}
-              <b>Research Intern at Brigham and Women's Hospital (Harvard Medical School)</b>.
+              I'm currently an <b>Associate Systems Analyst at SupplyLogic</b>, supporting data integrity and
+              systems administration across integrated enterprise platforms. My background also includes work as
+              a <b>Data Analyst</b>, a <b>SQL & Power BI Developer</b>, and a{' '}
+              <b>Research Intern at Brigham and Women's Hospital (Harvard Medical School)</b>, and I've delivered
+              analytics solutions in <b>Agile and SAFe environments</b>, collaborating with cross-functional teams
+              to translate business requirements into actionable insights.
             </p>
 
             <p>
               I enjoy working at the intersection of <b>data, systems, and people</b>. I turn messy datasets into
               clear insights, improve reporting workflows, and build analytics solutions that non-technical stakeholders
               can actually use.
+            </p>
+
+            <p>
+              I'm certified in <b>GCP for Clinical Trials (FDA Focus)</b> and <b>HIPAA Basics for Healthcare
+              Professionals</b> through the CITI Program.
             </p>
 
             <p>
