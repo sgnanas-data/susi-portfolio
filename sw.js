@@ -27,17 +27,17 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-ccb816e0a6adb7bec90b.js"
+    "url": "webpack-runtime-0b16198a8beeb0dad920.js"
   },
   {
     "url": "framework-249a4c7fba0fafdbc3b8.js"
   },
   {
-    "url": "app-6279388b4c3bb02a713f.js"
+    "url": "app-c76b12582525e270f941.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "f24bd246d116d4811936d74930a2612a"
+    "revision": "abe8e79263fb80749ca2bf8a84d40cbe"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-6eba29b928d4c96d963b.js"
@@ -48,7 +48,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "e5e7031c412072baa5e0b1af9ed72ff5"
+    "revision": "59e9f160503697ccec520d040bbd967d"
   },
   {
     "url": "manifest.webmanifest",
@@ -144,7 +144,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/susi-portfolio/app-6279388b4c3bb02a713f.js`))) {
+  if (!resources || !(await caches.match(`/susi-portfolio/app-c76b12582525e270f941.js`))) {
     return await fetch(event.request)
   }
 
