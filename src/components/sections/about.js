@@ -138,37 +138,17 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              I'm a Data Analyst with experience spanning <b>e-commerce, retail, and healthcare</b> domains.
-              I work with <b>Power BI, SQL, Snowflake, and Python</b> to build dashboards and reporting systems
-              that drive real decision-making.
-            </p>
-
-            <p>
-              I'm currently an <b>Associate Systems Analyst at SupplyLogic</b>, supporting data integrity and
-              systems administration across integrated enterprise platforms. My background also includes work as
-              a <b>Data Analyst</b>, a <b>SQL & Power BI Developer</b>, and a{' '}
-              <b>Research Intern at Brigham and Women's Hospital (Harvard Medical School)</b>, and I've delivered
-              analytics solutions in <b>Agile and SAFe environments</b>, collaborating with cross-functional teams
-              to translate business requirements into actionable insights.
-            </p>
-
-            <p>
-              I enjoy working at the intersection of <b>data, systems, and people</b>. I turn messy datasets into
-              clear insights, improve reporting workflows, and build analytics solutions that non-technical stakeholders
-              can actually use.
+              I'm currently an <b>Associate Systems Analyst at SupplyLogic</b>, working with <b>Power BI, SQL,
+              Snowflake, and Python</b> to keep data accurate and reporting systems running across enterprise
+              platforms. My background also includes work as a <b>Data Analyst</b>, a{' '}
+              <b>SQL & Power BI Developer</b>, and a <b>Research Intern at Brigham and Women's Hospital (Harvard
+              Medical School)</b>.
             </p>
 
             <p>
               I'm certified in <b>GCP for Clinical Trials (FDA Focus)</b> and <b>HIPAA Basics for Healthcare
               Professionals</b> through the CITI Program.
             </p>
-
-            <p>
-              Lately, I've been exploring side projects focused on <b>local information, productivity, and user-friendly
-              data access</b>.
-            </p>
-
-            <p>My skills are not limited to this list!</p>
           </div>
 
           <ul className="skills-list">

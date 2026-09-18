@@ -64,7 +64,7 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, [prefersReducedMotion]);
 
-  const one = <h1>Glad to e-meet you! My name is</h1>;
+  const one = <h1>Certified human. Occasionally debugs at 2am. I'm</h1>;
   const two = <h2 className="big-heading">Susitra Gnanasambhandam</h2>;
   const three = (
     <h3 className="medium-heading">Data Analyst | BI &amp; Analytics | E-Commerce, Retail &amp; Healthcare</h3>
